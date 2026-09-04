@@ -1,0 +1,16 @@
+.sidebar-item[data-active]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 3px 0 0 3px;
+    background: var(--color-primary);
+    pointer-events: none;
+}
+
+[data-compact] .sidebar-item[data-active]::after {
+    display: none;
+}
