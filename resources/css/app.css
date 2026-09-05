@@ -42,9 +42,12 @@
     --color-yellow-light: rgb(252, 208, 18);
     --color-green-light: rgb(63, 198, 96);
     --color-green2-light: rgb(52, 199, 89);
+
     --color-blue-light: rgb(12, 142, 252);
     --color-blue2-light: rgba(30, 150, 235, 0.8);
     --color-blue-accent-light: rgb(29, 135, 210);
+
+    --color-blue-contrast: rgb(4, 110, 182);
 
     --color-red2-contrast-light: rgb(171, 33, 23);
     --color-green2-contrast-light: rgb(48, 137, 77);
@@ -107,7 +110,7 @@
     --spacing-header: 0px;
     --spacing-nav: 280px;
     --spacing-nav-compact: 72px;
-    --spacing-icon: 22px;
+    --spacing-icon: 20px;
     --spacing-layout-y: 1.875rem;
     --spacing-layout-x: clamp(1.25rem, -0.125rem + 4.1667vw, 2.5rem);
 
@@ -123,5 +126,13 @@
 
     svg:has(use[href^='#']) {
         height: auto;
+    }
+
+    a {
+        @apply text-blue-contrast hover:text-primary-hover hover:underline transition-colors duration-200;
+    }
+
+    a:hover{
+        text-decoration: none;
     }
 }
