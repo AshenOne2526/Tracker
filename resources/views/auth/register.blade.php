@@ -3,78 +3,82 @@
 @section('title', 'Sign up')
 
 @php
-    $labelClass = 'mb-1.5 block text-s font-medium text-gray6-dark';
-    $inputClass = 'h-10 w-full rounded-input border border-border bg-background-main px-3 text-s text-body outline-none transition-[border-color] duration-fast ease-smooth placeholder:text-gray2-dark focus:border-primary';
+    $divClass = 'flex items-center text-center text-s gap-2';
 @endphp
 
 @section('content')
-    <div class="mx-auto w-full max-w-[400px] rounded-form border border-overlay-6 bg-background-main p-8 shadow-card">
-        <h1 class="font-sans text-l font-semibold text-headline">Create account</h1>
-        <p class="mt-1 mb-6 text-s text-gray2-dark">Fill in your details to get started.</p>
+    <x-auth-card>
+        <div>
+            <x-auth-header>Welcome to Tracker</x-auth-header>
+            <p class="mt-1 text-s text-gray2-dark text-center">Create an account to start tracking your work.</p>
+        </div>
 
-        <form class="flex flex-col gap-4" method="post" action="#" onsubmit="event.preventDefault()">
-            <div>
-                <label class="{{ $labelClass }}" for="name">Name</label>
-                <input
-                    class="{{ $inputClass }}"
-                    id="name"
-                    name="name"
-                    type="text"
-                    autocomplete="name"
-                    required
-                    autofocus
-                >
-            </div>
+        <div class="flex flex-col gap-4">
+            <x-button-google/>
 
-            <div>
-                <label class="{{ $labelClass }}" for="email">Email</label>
-                <input
-                    class="{{ $inputClass }}"
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    inputmode="email"
-                    required
-                >
-            </div>
+            <x-devider>or</x-devider>
 
-            <div>
-                <label class="{{ $labelClass }}" for="password">Password</label>
-                <div class="relative">
-                    <input
-                        class="{{ $inputClass }} pr-10"
-                        id="password"
-                        name="password"
-                        type="password"
-                        autocomplete="new-password"
+            <form class="flex flex-col gap-4" method="post" action="#" onsubmit="event.preventDefault()">
+                <div>
+                    <x-label for="name">Full name</x-label>
+
+                    <x-input
+                        id="name"
+                        name="name"
+                        type="name"
+                        autocomplete="name"
+                        inputmode="name"
+                        placeholder="Enter your full name"
                         required
-                    >
-                    <button
-                        type="button"
-                        class="absolute top-1/2 right-2 flex size-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-action border-0 bg-transparent text-gray2-dark transition-colors duration-fast ease-smooth hover:text-gray3-dark focus-visible:outline-none"
-                        data-password-toggle
-                        aria-label="Show password"
-                        aria-controls="password"
-                        aria-pressed="false"
-                    >
-                        <svg data-password-icon="show" class="size-icon fill-current" aria-hidden="true"><use href="#icon-eye"></use></svg>
-                        <svg data-password-icon="hide" class="hidden size-icon fill-current" aria-hidden="true"><use href="#icon-eye-slash"></use></svg>
-                    </button>
+                        autofocus
+                    />
                 </div>
+
+                <div>
+                    <x-label for="email">Email</x-label>
+
+                    <x-input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        inputmode="email"
+                        placeholder="Enter your email address"
+                        required
+                        autofocus
+                    />
+                </div>
+
+                <div>
+                    <x-label for="password">Password</x-label>
+                    
+                    <div data-password-strength>
+                        <x-input-password
+                            id="password"
+                            name="password"
+                            autocomplete="new-password"
+                            placeholder="Enter your password"
+                            required
+                        />
+
+                        <x-password-strength />
+                    </div>
+                </div>
+
+                <x-checkbox name="terms" class="mt-4" required>
+                    I have read and agree to the
+                    <a href="#" target="_blank" rel="noreferrer">Terms of Service</a>
+                    and
+                    <a href="#" target="_blank" rel="noreferrer">Privacy Policy</a>
+                </x-checkbox>
+
+                <x-button class="font-semibold shrink-0" textSize="m">Create an account</x-button>
+            </form>
+
+            <div class="{{ $divClass }} justify-center">
+                <p class="text-gray2-dark">Already have an account?</p>
+                <a href="{{ route('login') }}" class="font-medium text-blue-contrast no-underline transition-colors duration-fast ease-smooth hover:text-primary-hover">Sign in</a>
             </div>
-
-            <button
-                type="submit"
-                class="mt-2 flex h-9 w-full cursor-pointer items-center justify-center rounded-action border-0 bg-primary text-s font-medium text-btn-primary transition-colors duration-fast ease-smooth hover:bg-primary-hover"
-            >
-                Create account
-            </button>
-        </form>
-
-        <p class="mt-6 text-center text-s text-gray2-dark">
-            Already have an account?
-            <a href="{{ route('login') }}" class="font-medium text-primary no-underline transition-colors duration-fast ease-smooth hover:text-primary-hover">Sign in</a>
-        </p>
-    </div>
+        </div>
+    </x-auth-card>
 @endsection

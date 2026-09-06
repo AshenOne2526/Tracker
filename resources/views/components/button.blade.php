@@ -13,7 +13,7 @@
         'l' => 'text-l',
     ][$textSize] ?? 'text-s';
 
-    $baseClass = 'inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-button px-4 font-medium whitespace-nowrap transition-[background-color,border-color] duration-fast ease-smooth';
+    $baseClass = 'inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-button px-4 font-medium whitespace-nowrap transition-[background-color,border-color,opacity] duration-fast ease-smooth disabled:cursor-not-allowed disabled:opacity-45';
 
     $variantClass = [
         'primary' => 'border-0 bg-primary text-btn-primary hover:bg-primary-hover',
