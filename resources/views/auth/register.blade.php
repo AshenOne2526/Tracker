@@ -18,7 +18,8 @@
 
             <x-devider>or</x-devider>
 
-            <form class="flex flex-col gap-4" method="post" action="#" onsubmit="event.preventDefault()">
+            <form class="flex flex-col gap-4" method="post" action="{{ route('register.store') }}">
+                @csrf
                 <div>
                     <x-label for="name">Full name</x-label>
 

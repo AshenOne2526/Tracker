@@ -110,7 +110,7 @@
     --spacing-header: 0px;
     --spacing-nav: 280px;
     --spacing-nav-compact: 72px;
-    --spacing-icon: 20px;
+    --spacing-icon: 18px;
     --spacing-layout-y: 1.875rem;
     --spacing-layout-x: clamp(1.25rem, -0.125rem + 4.1667vw, 2.5rem);
 
@@ -120,6 +120,16 @@
 }
 
 @layer base {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px var(--color-background-main) inset;
+        -webkit-text-fill-color: var(--color-body);
+        caret-color: var(--color-body);
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         @apply font-heading text-headline;
     }

@@ -78,7 +78,7 @@
             <ul class="m-0 flex list-none flex-col gap-1 p-0">
                 <li @class(['sidebar-item group/item relative']) @if (request()->routeIs('settings')) data-active @endif>
                     <a
-                        href="{{ route('settings') }}"
+                        href="#"
                         class="{{ $triggerClass }}"
                         aria-label="Settings"
                         title="Settings"
@@ -90,7 +90,7 @@
                 </li>
                 <li @class(['sidebar-item group/item relative']) @if (request()->routeIs('help')) data-active @endif>
                     <a
-                        href="{{ route('help') }}"
+                        href="#"
                         class="{{ $triggerClass }}"
                         aria-label="Help"
                         title="Help"

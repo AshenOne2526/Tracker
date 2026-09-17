@@ -10,7 +10,8 @@
     <x-auth-card>
         <x-auth-header>Sign in to Tracker</x-auth-header>
 
-        <form class="flex flex-col gap-4" method="post" action="#" onsubmit="event.preventDefault()">
+        <form class="flex flex-col gap-4" method="post" action="{{ route('login.store') }}">
+            @csrf
             <div>
                 <x-label for="email">Email</x-label>
 
