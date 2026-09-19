@@ -111,14 +111,18 @@
                         <p class="truncate text-s leading-tight font-semibold text-headline">{{ $user->name }}</p>
                         <p class="truncate text-[12px] leading-tight text-gray2-dark">{{ $user->email }}</p>
                     </div>
-                    <button
-                        type="button"
-                        class="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-action border-0 bg-transparent text-gray2-dark transition-colors duration-fast ease-smooth hover:text-gray3-dark focus-visible:outline-none group-data-compact/shell:hidden"
-                        aria-label="Log out"
-                        title="Log out"
-                    >
-                        <svg class="size-icon fill-current" aria-hidden="true"><use href="#icon-logout"></use></svg>
-                    </button>
+
+                    <form method="POST" action="{{ route('logout') }}" class="shrink-0 group-data-compact/shell:hidden">
+                        @csrf
+                        <button
+                            type="submit"
+                            class="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-action border-0 bg-transparent text-gray2-dark transition-colors duration-fast ease-smooth hover:text-gray3-dark focus-visible:outline-none group-data-compact/shell:hidden"
+                            aria-label="Log out"
+                            title="Log out"
+                        >
+                            <svg class="size-icon fill-current" aria-hidden="true"><use href="#icon-logout"></use></svg>
+                        </button>
+                    </form>
                 @else
                     <svg class="{{ $iconClass }}" aria-hidden="true"><use href="#icon-user"></use></svg>
                 @endif
