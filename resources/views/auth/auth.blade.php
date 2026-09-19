@@ -19,6 +19,7 @@
                     id="email"
                     name="email"
                     type="email"
+                    value="{{ old('email') }}"
                     autocomplete="email"
                     inputmode="email"
                     placeholder="Enter your email address"
@@ -37,6 +38,10 @@
                     required
                 />
             </div>
+
+            @error('email')
+                <p class="m-0 text-s text-error" role="alert">{{ $message }}</p>
+            @enderror
 
             <div class="flex flex-col gap-4 mt-4">
                 <x-button class="font-semibold shrink-0" textSize="m">Sign in</x-button>
