@@ -27,12 +27,17 @@
                         id="name"
                         name="name"
                         type="name"
+                        value="{{ old('name') }}"
                         autocomplete="name"
                         inputmode="name"
                         placeholder="Enter your full name"
                         required
                         autofocus
                     />
+
+                    @error('email')
+                        <p class="mt-1 text-s text-error" role="alert">{{  $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
@@ -42,12 +47,16 @@
                         id="email"
                         name="email"
                         type="email"
+                        value="{{ old('email') }}"
                         autocomplete="email"
                         inputmode="email"
                         placeholder="Enter your email address"
                         required
-                        autofocus
                     />
+
+                    @error('email')
+                        <p class="mt-1 text-s text-error" role="alert">{{  $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
@@ -63,15 +72,25 @@
                         />
 
                         <x-password-strength />
+
+                        @error('password')
+                            <p class="mt-1 text-s text-error" role="alert">{{  $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
-                <x-checkbox name="terms" class="mt-4" required>
-                    I have read and agree to the
-                    <a href="#" target="_blank" rel="noreferrer">Terms of Service</a>
-                    and
-                    <a href="#" target="_blank" rel="noreferrer">Privacy Policy</a>
-                </x-checkbox>
+                <div>
+                    <x-checkbox name="terms" class="mt-4" required>
+                        I have read and agree to the
+                        <a href="#" target="_blank" rel="noreferrer">Terms of Service</a>
+                        and
+                        <a href="#" target="_blank" rel="noreferrer">Privacy Policy</a>
+                    </x-checkbox>
+
+                    @error('terms')
+                        <p class="mt-1 text-s text-error" role="alert">{{  $message }}</p>
+                    @enderror
+                </div>
 
                 <x-button class="font-semibold shrink-0" textSize="m">Create an account</x-button>
             </form>

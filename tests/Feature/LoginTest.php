@@ -7,6 +7,14 @@ test('guest can view login page', function () {
         ->assertOk();
 });
 
+test('guest is redirected to login from protected pages', function () {
+    $this->get(route('home'))
+        ->assertRedirect(route('login'));
+    
+    $this->get(route('dashboard'))
+        ->assertRedirect(route('login'));
+});
+
 test('user can log in with valid credentials', function () {
     $user = User::factory()->create([
         'email' => 'alec@example.com',

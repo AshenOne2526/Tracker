@@ -26,5 +26,53 @@ test('guest can register with valid data', function () {
 
     expect(User::where('email', 'alec@example.com')->first())
         ->name->toBe('Alec Test');
-    
+});
+
+test('registration form shows an error when the email is taken', function () {
+    User::factory()->create([
+        'email' => 'alec@example.com',
+    ]);
+
+    $this->from(route('register'))
+        ->followingRedirects()
+        ->post(route('register.store'), [
+            'name' => 'Alec Test',
+            'email' => 'alec@example.com',
+            'password' => 'Password1!',
+            'terms' => '1',
+        ])
+        ->assertSee(__('validation.unique', ['attribute' => 'email']))
+        ->assertSee('value="Alec Test"', false)
+        ->assertSee('value="alec@example.com"', false);
+
+    $this->assertGuest();
+});
+
+test('registration form shows an error when the password is too week', function () {
+    $this->from(route('register'))
+        ->followingRedirects()
+        ->post(route('register.store'), [
+            'name' => 'Alec Test',
+            'email' => 'alec@example.com',
+            'password' => 'password',
+            'terms' => '1',
+        ])
+        ->assertSee(__('The password is too weak'))
+        ->assertSee('value="Alec Test"', false)
+        ->assertSee('value="alec@example.com"', false);
+
+    $this->assertGuest();
+});
+
+test('registration form shows an error when terms are not accepted', function () {
+    $this->from(route('register'))
+        ->followingRedirects()
+        ->post(route('register.store'), [
+            'name' => 'Alec Test',
+            'email' => 'alec@example.com',
+            'password' => 'Password1!',
+        ])
+        ->assertSee(__('validation.accepted', ['attribute' => 'terms']));
+
+    $this->assertGuest();
 });
