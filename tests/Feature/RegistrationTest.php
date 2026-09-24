@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Enums\UserRole;
 
 test('guest can view registration page', function () {
     $this->get(route('register'))
@@ -75,4 +76,17 @@ test('registration form shows an error when terms are not accepted', function ()
         ->assertSee(__('validation.accepted', ['attribute' => 'terms']));
 
     $this->assertGuest();
+});
+
+test('registered users default to the employee role and cannot escalate it', function () {
+    $this->post(route('register.store'), [
+            'name' => 'Alec Test',
+            'email' => 'alec@example.com',
+            'password' => 'Password1!',
+            'terms' => '1',
+            'role' => UserRole::Admin->value,
+    ]);
+
+    expect(User::where('email', 'alec@example.com')->firstOrFail()->role)
+        ->toBe(UserRole::Employee);
 });
